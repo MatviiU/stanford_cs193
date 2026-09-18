@@ -14,6 +14,8 @@ struct CodeBreaker {
     var guess: Code = Code(kind: .guess)
     var attempts: Array<Code> = []
     let pegChoices: Array<Peg>
+    var startTime: Date = Date.now
+    var endTime: Date?
     
     init(pegChoices: Array<Peg> = [.red, .blue, .green, .yellow]) {
         self.pegChoices = pegChoices
@@ -29,6 +31,8 @@ struct CodeBreaker {
         masterCode.randomize(from: pegChoices)
         guess.reset()
         attempts.removeAll()
+        startTime = .now
+        endTime = nil
     }
  
     mutating func attemptGuess() {
@@ -39,6 +43,7 @@ struct CodeBreaker {
         
         if isOver {
             masterCode.kind = .master(isHidden: false)
+            endTime = .now
         }
     }
     
