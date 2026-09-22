@@ -10,7 +10,7 @@ extension Peg {
     static let missing = Color.clear
 }
 
-struct Code {
+struct Code {    
     var kind: Kind
     var pegs: Array<Peg> =  Array(repeating: Code.missingPeg, count: 4)
     
